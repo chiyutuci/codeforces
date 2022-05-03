@@ -22,8 +22,7 @@ const int N = 100500;
     }
 #define FASTIO                   \
     ios::sync_with_stdio(false); \
-    cin.tie(nullptr);            \
-    cout.tie(nullptr);
+    cin.tie(nullptr);
 #define fori(i, l, r) for (int i = l; i < r; i++)
 #define grid(x, m, n) vvi x(m, vi(n));
 #define all(x) x.begin(), x.end()
