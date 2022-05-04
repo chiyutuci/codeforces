@@ -34,7 +34,29 @@ const int N = 100005;
 // Write your program here
 class Solution {
  public:
-  void solve() {}
+  void solve() {
+    int n, m;
+    cin >> n >> m;
+    string s;
+    cin >> s;
+
+    string p = "abc";
+    grid(pre, 6, n + 1);
+
+    int cur = 0;
+    do {
+      fori(i, 0, n) { pre[cur][i + 1] = pre[cur][i] + (s[i] != p[i % 3]); }
+      cur++;
+    } while (next_permutation(all(p)));
+
+    while (m--) {
+      int l, r;
+      cin >> l >> r;
+      int ans = n;
+      fori(i, 0, 6) { ans = min(ans, pre[i][r] - pre[i][l - 1]); }
+      cout << ans << endl;
+    }
+  }
 
  private:
 };
