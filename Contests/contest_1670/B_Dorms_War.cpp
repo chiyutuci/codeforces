@@ -27,7 +27,6 @@ typedef unordered_map<int, int> umii;
 #define all(x) x.begin(), x.end()
 
 // constant defination
-const int MOD = 1000000007;
 const int N = 100005;
 
 // --------------------------------------------
@@ -35,19 +34,29 @@ const int N = 100005;
 class Solution {
  public:
   void solve() {
-    int n, m;
-    cin >> n >> m;
-    vi nums(n);
-    fori(i, 0, n) cin >> nums[i];
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    int k;
+    cin >> k;
+    set<char> spe;
+    fori(i, 0, k) {
+      char c;
+      cin >> c;
+      spe.insert(c);
+    }
 
-    grid(dp, n + 1, m + 1);
-    vector<vector<vector<int>>> dp(n + 1, vvi(m + 1, vi(m + 1)));
-
-    fori(i, 1, n + 1) {
-      fori(j, 1, m + 1) {
-        fori(k, 1, j + 1) { dp[i][j][k] = dp[i - 1][] }
+    int ans = 0;
+    int last = 0;
+    fori(i, 1, n) {
+      if (spe.count(s[i])) {
+        ans = max(ans, i - last);
+        last = i;
       }
     }
+
+    cout << ans << endl;
   }
 
  private:
@@ -59,8 +68,7 @@ int main() {
   FASTIO;
 
   Solution solution;
-  SINGLECASE;
-  // MULTICASE;
+  MULTICASE;
 
   return 0;
 }

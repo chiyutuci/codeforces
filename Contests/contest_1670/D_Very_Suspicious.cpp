@@ -34,21 +34,7 @@ const int N = 100005;
 // Write your program here
 class Solution {
  public:
-  void solve() {
-    int n, m;
-    cin >> n >> m;
-    vi nums(n);
-    fori(i, 0, n) cin >> nums[i];
-
-    grid(dp, n + 1, m + 1);
-    vector<vector<vector<int>>> dp(n + 1, vvi(m + 1, vi(m + 1)));
-
-    fori(i, 1, n + 1) {
-      fori(j, 1, m + 1) {
-        fori(k, 1, j + 1) { dp[i][j][k] = dp[i - 1][] }
-      }
-    }
-  }
+  void solve() {}
 
  private:
 };

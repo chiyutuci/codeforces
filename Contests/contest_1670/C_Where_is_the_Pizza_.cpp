@@ -35,19 +35,47 @@ const int N = 100005;
 class Solution {
  public:
   void solve() {
-    int n, m;
-    cin >> n >> m;
-    vi nums(n);
-    fori(i, 0, n) cin >> nums[i];
+    int n;
+    cin >> n;
+    vi a(n);
+    vi b(n);
+    vi c(n);
+    vi d(n + 1);
+    vi pos(n + 1);
+    fori(i, 0, n) {
+      cin >> a[i];
+      pos[a[i]] = i;
+    }
+    fori(i, 0, n) { cin >> b[i]; }
 
-    grid(dp, n + 1, m + 1);
-    vector<vector<vector<int>>> dp(n + 1, vvi(m + 1, vi(m + 1)));
+    fori(i, 0, n) {
+      int x;
+      cin >> x;
+      c[i] = x;
+    }
 
-    fori(i, 1, n + 1) {
-      fori(j, 1, m + 1) {
-        fori(k, 1, j + 1) { dp[i][j][k] = dp[i - 1][] }
+    ll ans = 1;
+    fori(i, 0, n) {
+      if (d[a[i]] == 0) {
+        int head = a[i];
+        int prev = a[i];
+        d[prev] = 1;
+        int next = b[i];
+        while (next != prev && next != head) {
+          int p = pos[next];
+          prev = a[p];
+          d[prev] = 1;
+          next = b[p];
+          d[next] = 1;
+        }
+        if (!c[i] && a[i] != b[i]) {
+          ans *= 2;
+          ans %= MOD;
+        }
       }
     }
+
+    cout << ans << endl;
   }
 
  private:
@@ -59,8 +87,7 @@ int main() {
   FASTIO;
 
   Solution solution;
-  SINGLECASE;
-  // MULTICASE;
+  MULTICASE;
 
   return 0;
 }

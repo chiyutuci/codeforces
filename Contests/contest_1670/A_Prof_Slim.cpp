@@ -35,19 +35,30 @@ const int N = 100005;
 class Solution {
  public:
   void solve() {
-    int n, m;
-    cin >> n >> m;
+    int n;
+    cin >> n;
     vi nums(n);
-    fori(i, 0, n) cin >> nums[i];
+    int mm = 0;
+    fori(i, 0, n) {
+      cin >> nums[i];
+      if (nums[i] < 0) mm++;
+    }
+    if (nums.size() == 1) {
+      cout << "YES" << endl;
+      return;
+    }
 
-    grid(dp, n + 1, m + 1);
-    vector<vector<vector<int>>> dp(n + 1, vvi(m + 1, vi(m + 1)));
+    fori(i, 0, mm) nums[i] = -1 * abs(nums[i]);
+    fori(i, mm, nums.size()) nums[i] = abs(nums[i]);
 
-    fori(i, 1, n + 1) {
-      fori(j, 1, m + 1) {
-        fori(k, 1, j + 1) { dp[i][j][k] = dp[i - 1][] }
+    fori(i, 0, nums.size() - 1) {
+      if (nums[i] > nums[i + 1]) {
+        cout << "NO" << endl;
+        return;
       }
     }
+
+    cout << "YES" << endl;
   }
 
  private:
@@ -59,8 +70,7 @@ int main() {
   FASTIO;
 
   Solution solution;
-  SINGLECASE;
-  // MULTICASE;
+  MULTICASE;
 
   return 0;
 }
